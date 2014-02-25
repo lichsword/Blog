@@ -1,1 +1,16 @@
 今天开始写Blog, 不去关心css, html的表现层，不需要关心读者评论。只需要专注于记录、整理思绪。
+
+Skill
+问题：从源代码中找到相关文本（本例是找出ImagePoolBinder对象）
+解答：排查关键字 grep -Ri imagepoolbinder src src_* | cut -f 1 -d ':' | uniq
+原理：分3个子程序实现，由|管道连接
+(1)grep:文本查找工具：
+    -R:目录递归查找
+    -i:忽略大小写
+    imagepoolbinder:是目标文本（由于-i所以，可以全小写）
+    src:是目标目录之一
+    src_*: 是目标目录之二
+(2)cut:文本分割工具：
+    -f 1:(field)指定域，索引为1（即第2个，因为从0开始计）
+    -d ':':(divide)指定分割符为':'冒号
+(3)uniq:报告或删除文件中重复的行
