@@ -1,11 +1,11 @@
 o step1...passed
 git add .
-echo "step2...(20%)"
+echo "step1: Add...(20%)"
 git commit -m \"$1\"
-echo "step2...(40%)"
+echo "step2: Commit...(40%)"
 git pull --rebase
-echo "step2...(60%)"
+echo "step3: Pull...(60%)"
 git push
-echo "step2...(80%)"
+echo "step4: Push...(80%)"
 git pull --rebase
-echo "step2...(100%)"
+echo "step5: Pull...(100%)"
