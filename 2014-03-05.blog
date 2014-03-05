@@ -1,0 +1,10 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+adb logcat -c // 清除历史
+adb logcat -v time // 显示时间戳
+adb logcat | grep APK_PATH // 重定向，并过滤出含APK_PATH的日志
