@@ -1,0 +1,127 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+程序：调研跟踪系统
+架构：
+语言：
+    前端：Javascript+HTML+CSS
+    后端：Java
+库：
+    sqlite：我的MAC已经安装，执行 sqlite3运行数据库
+
+抽像数据类型：
+笔记{
+    数据：
+        序号 int id
+        内容 string content
+}
+
+数据库｛
+    数据：
+        笔记 look up
+    操作：
+        连接数据库：
+            答：
+                库名：sqlite
+                驱动：http://www.sqlite.org/download.html 
+                用法：http://blog.csdn.net/qjlhlh/article/details/6339945
+        查询笔记：
+            查询全部：
+                名称：queryAll 
+                范式：SELECT 列名称 FROM 表名称
+                引用：http://www.w3school.com.cn/sql/sql_select.asp
+            Id查询：
+                名称：queryById 
+                范式：SELECT 列名称 FROM 表名称 WHERE 列 运算符 值
+                引用：http://www.w3school.com.cn/sql/sql_where.asp
+        新增笔记：
+            新增单个记录：
+                名称：insert(笔记)
+                范式：INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+                引用：http://www.w3school.com.cn/sql/sql_insert.asp
+            新增多个记录：
+                名称：insert(笔记s)
+                范式：sqlite3不支持多条记录一次插入，所以要使用事务范式
+                引用：http://www.cnblogs.com/wuhenke/archive/2011/10/30/2229126.html
+                示例：
+                伪代码
+                begin();  
+                    INSERT INTO "table" VALUES ('a', 'b', 'c');  
+                    INSERT INTO "table" VALUES ('a', 'b', 'c');  
+                    INSERT INTO "table" VALUES ('a', 'b', 'c');  
+                commit();
+        删除笔记：deleteById
+            删除单个记录：
+                名称：deleteById(int id)
+                范式：DELETE FROM 表名称 WHERE 列名称 = 值
+                引用：http://www.w3school.com.cn/sql/sql_delete.asp
+                示例：DELETE FROM Person WHERE LastName = 'Wilson'
+            删除全部记录：
+                名称：deleteAll()
+                范式：DELETE FROM table_name
+                引用：http://www.w3school.com.cn/sql/sql_delete.asp
+            删除多个记录：
+                名称：delete(笔记s)
+                范式：(1)用事务 (2)使用sql in 语句
+                引用：http://www.w3school.com.cn/sql/sql_in.asp
+                示例：
+                伪代码-事务
+                    begin();  
+                        DELETE FROM "table" WHERE id = ''
+                        INSERT INTO "table" VALUES ('a', 'b', 'c');  
+                    commit();
+                伪代码-Sql_In
+                    SELECT column_name(s)
+                    FROM table_name
+                    WHERE column_name IN (value1,value2,...)
+        修改笔记：updateById
+            删除单个记录：
+                名称：deleteById(int id)
+                范式：UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+                引用：http://www.w3school.com.cn/sql/sql_update.asp
+                示例：UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson'
+}
+
+展示页｛
+    数据：
+        列表：
+            答：jQuery-Ajax load()方法http://www.w3school.com.cn/jquery/jquery_ajax_load.asp
+    操作：
+        绘制界面：
+            按钮：
+                示例：<button type="button">Click Me!</button>
+                引用：http://www.w3school.com.cn/tags/tag_button.asp
+            表单-文本框：
+                示例：
+                    <form>
+                        First name: <input type="text" name="firstname" />
+                    </form>
+                引用：http://www.w3school.com.cn/html/html_forms.asp
+            表格：
+                示例：
+                <table border="1">
+                    <tr>
+                        <th>Heading</th>
+                        <th>Another Heading</th>
+                    </tr>
+                    <tr>
+                        <td>row 1, cell 1</td>
+                        <td>row 1, cell 2</td>
+                    </tr>
+                    <tr>
+                        <td>row 2, cell 1</td>
+                        <td>row 2, cell 2</td>
+                    </tr>
+                </table>
+                引用：http://www.w3school.com.cn/html/html_tables.asp
+        删除一行 
+            本质：deleteRowById 写ul/li标签通过id选择器，使用jquery操作。
+        刷新 
+            本质：refresh = 调用Ajax执行Java语句 
+            重点：xmlhttp.open("GET","gethint.asp?q="+str,true);
+            引用：http://www.w3school.com.cn/ajax/ajax_asp_php.asp
+}
