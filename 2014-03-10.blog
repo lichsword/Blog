@@ -16,3 +16,53 @@
 2.小说加数字
 4.扫描apk删除时，再动效
 5.小说列表最多240个=12*20页
+
+
+-------------
+Tomcat深入剖析读书笔记
+
+标题：chapter 1 简单的Web服务器
+正文：
+数目：3
+    HttpServer
+    Request
+    Response
+解析：
+    HttpServer 实现main()是程序入口
+    内部实现一个while循环，while的出口是 boolean shutdown = true.
+    shutdown 会在每次循环时，读取url的参数来定义
+    localhost/SHUTDOWN 表示 shutdown = true, 本质是字符分割
+
+    HttpServer = Request + Response
+    内部通过 Stream 的InputStream 和 OutputStream 来处理数据流。
+公式：
+    HttpServer = Request + Response
+    Request = InputStream + URI
+    Response = Request + OutputStream
+功能：
+    到这里只支持
+    (1)动态关闭服务shutdown 
+    (2)显示静态文件资源到浏览器，如：index.html
+
+标题：chapter 2 简单的Servlet容器
+正文：
+数目：6
+    HttpServer1
+    Request
+    Response
+    StaticResourceProcessor
+    ServletProcessor1
+    Constants
+解析：
+    HttpServer1仍然是main()入口，实现循环，shutdown的机制是相同的
+    url = scheme://host:port/path
+    此次的path通过startWith("servlet")来判断是调用Servlet类，否则则是静态文件。
+    Servlet类名是path的第2部分，通过 URLClassLoader.load
+公式：
+    HttpServer1 = Request + Response
+    Request = InputStream + URI
+    Response = Request + OutputStream
+    StaticResourceProcessor = Request + Response
+    ServletProcessor1= Request + Response
+    Constants = (String)WEB_ROOT
+

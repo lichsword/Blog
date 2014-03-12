@@ -1,0 +1,42 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+新增逻辑点：
+1.下载量
+由服务端进行格式化，客户端只显示即可。逻辑转到了服务端。
+eg:
+-----------
+server:  "956"
+client:  "956次下载"
+-----------
+server:  "1千"
+client:  "1千次下载"
+-----------
+逻辑就是：client = server + "次下载"
+
+2.字数
+由服务端提供int型wordNumber字段，由客户端进行逻辑格式化。
+(1)小于1万：显示原始字数
+eg:
+server:9999
+client:9999字
+(2)不小于1万：显示1位小数的float+"字"
+eg:
+server:19999
+client:1.9万字
+
+server:2506666
+client:250.6万字
+----------------
+UML图的学习
+
+(1)http://blog.csdn.net/microchenhong/article/details/6239462
+(2)http://wenku.baidu.com/link?url=7YkvK8yymQiFVJQnbUE6BQ2RfJc9opo6doSwNXzBXv_-SxVBb6EDMKOTaeDZwvOeWLxIeAN8cJV6hjclzOrofJESXoSi-jsPsO8rESxhIAS
+(3)http://bbs.csdn.net/topics/40394921
+(4)http://dev.yesky.com/464/8642464.shtml
+找个时间把以上4条资料集合，打印成纸，学习。
+
