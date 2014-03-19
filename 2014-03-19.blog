@@ -1,0 +1,27 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+find . -name '*Response*
+在当前目录以及子目录中查找名称含 Response的文件
+
+lichswordInc:catalina lichsword$ find . -name '*Response*'
+./connector/http/HttpResponseImpl.java
+./connector/http/HttpResponseStream.java
+./connector/http10/HttpResponseImpl.java
+./connector/HttpResponseBase.java
+./connector/HttpResponseFacade.java
+./connector/HttpResponseWrapper.java
+./connector/ResponseBase.java
+./connector/ResponseFacade.java
+./connector/ResponseStream.java
+./connector/ResponseWrapper.java
+./connector/ResponseWriter.java
+./core/ApplicationHttpResponse.java
+./core/ApplicationResponse.java
+./HttpResponse.java
+./Response.java
+./ssi/ResponseIncludeWrapper.java
