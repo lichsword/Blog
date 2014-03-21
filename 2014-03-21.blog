@@ -1,0 +1,57 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+一、目标
+潜在不受控对象或业务:
+(1)时间
+static (object)
+thread
+timer
+
+(2)内容
+List Map等容器，且有数据循环add任务
+
+(3)关联
+callback(interface)
+Context/Activity
+
+推荐使用现有框架 和 接口:
+因手助使用线程池 和 taoapp框架，所以我们只要复用了，应该是没有OOM风险的。
+
+二、排查
+Eclipse 插件MAT
+[Download]
+http://www.eclipse.org/mat/
+
+[Usage]
+http://blog.csdn.net/jl_qiqi/article/details/8572825
+http://chiyx.iteye.com/blog/1528782
+
+请参与Coding的同学都安装Eclipse 和 MAT
+
+FAQ
+问题：MAT只有Eclipse版本吗？我使用AndroidStudio，不方便怎么办？
+答：据我所知目前只有Eclipse有此插件，相信不久之后 Studio 也会有的。
+
+MAT 的工作分2部分:
+    (1)Dump Java Heap
+    (2)生成图形化报表
++----------------------------------------+
+|功能           |Eclipse| Android Studio |
++---------------+-------+----------------+
+|Dump Java Heap |  有   |   有           |
++---------------+-------+----------------+
+|生成图形化报表 |  有   |   无           |
++----------------------------------------+
+
+三、重现OOM
+一般的方法是人工重复操作UI 3～5次，让内存占用率上升，但未OOM的时候，执行Dump Java Heap操作。
+
+四、解决
+通过MAT生成的报表，按内存占用率排序。
+通过查看对象路径，可以定位到是哪一个对象的数据未释放。
+再结合（1）业务逻辑 （2）语法规则 一般可以得到解决。
