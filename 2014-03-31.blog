@@ -1,0 +1,73 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+首页底部导航栏
+AppCenterMainActivity.onCreate()---invoke---FragmentHelper.onCreate().
+
+导航栏改变
+InitFragmentHelper.OnTabChangeListener changeList object.
+
+导航栏初始化
+Fragmet fragment = fm.findFragmentByTag(tabId);
+if(null == fragment){
+    fragment = new XXXFragment();
+    ft.add(R.realtabcontent, fragment, TAB_XXX);
+}else{
+    ft.show(fragment);
+}
+currentLayout = 0;
+
+推荐页功能模块的初始化
+RecommendFragment.setupViews()
+
+应用页功能模块的初始化
+AppFragment.onCreateView()---invoke---initData()/initViews()
+
+应用页的ListView的item被点击事件
+mDownloadListView.setOnItemClickListener(this);
+public void onItemClick()
+
+应用页的ListView的item的子元素被点击事件
+public void OnItemChildClick()
+
+分享对话框的实现
+ShareDialog不是直接派生Dialog，而是组合来实现。
+==M==
+setShareData(ShareData data)
+ShareData {
+    String mText, mLink;
+    String mSrcAssetPath;
+    String mSrcSmallBitmap;
+    String mSrcLargeBitmap;   
+    Uri mDstSmallUri, mDstLargeUri, mDstQRCodeUri;
+}
+==V==
+Dialog dlg;
+showShareList();// 对话框界面实现
+==C==
+ShareQQController
+ShareWeixinController
+
+详情页开发
+DetailActivity extends BaseActivity {
+    DetailDataDo mDetailDataDo;// model
+    DataLoadingView mDataLoadingView;// loading view.
+    TaoappImagePoolBinder mImagePoolBinder;
+    ...
+}
+
+initViewPager();// 软件详情；用户评论；相关推荐
+
+娱乐首页的视图是如何初始化的？
+EntertainmentFragment.onCreateView()
+
+-----------------
+扫描反馈功能
+白名单扫描
+界面：
+列表
+

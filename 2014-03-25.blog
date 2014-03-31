@@ -1,0 +1,29 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+==DB design==
+table name: ebook
+columns:
+(1)_id int (auto inc)
+(2)book_id long
+(3)path (text)
+(4)latest_chapter (int)
+==file checksum==
+(1)size
+(2)crc32
+(3)adler32
+adler32 faster 25% than crc32
+==request header==
+[INFO]-----request data start----------
+GET /css/home.css HTTP/1.1
+Host: 127.0.0.1:8080
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3
+Accept-Encoding: gzip, deflate
+Referer: http://127.0.0.1:8080/servlet-home
+Connection: keep-alive
