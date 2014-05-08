@@ -23,4 +23,9 @@
 图型库：opengl/dx/gui
 各类项目管理，代码集成工具：github/trac/basecamp
 
-我打算把 vim/shell/c/opengl 作为终生工具。
+我打算把 vim/shell/c/lisp/opengl 作为终生工具。
+书籍分别为：
+vim无须书,网络资源即可。
+Shell《Shell脚本学习指南》
+c《C Primer Plus》
+lisp《实用Common Lisp编程》
