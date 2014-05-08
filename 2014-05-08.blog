@@ -1,0 +1,26 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+终生工具：
+编辑器：vim/emacs
+操作系统环境：shell
+基本编程语言：c/lisp
+
+必备工具：
+版本控制工具：git
+社交网络：stack overflow/github
+写作工具：markdown/latex/html
+通用编程工具：python/ruby/javascript
+
+特定领域工具：
+各类编程框架：rails/django/tomcat
+各类测试框架：xunit/rspec
+用户行为分析工具：ga
+图型库：opengl/dx/gui
+各类项目管理，代码集成工具：github/trac/basecamp
+
+我打算把 vim/shell/c/opengl 作为终生工具。
