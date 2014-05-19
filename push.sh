@@ -1,4 +1,4 @@
-o step1...passed
+echo "step0:...passed"
 git add .
 echo "step1: Add...(20%)"
 git commit -m \"$1\"
