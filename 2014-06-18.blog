@@ -1,0 +1,66 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+git取远程分支
+git checkout -b localname remotename
+localname="4.1.0"
+remotename="origin/4.1.0"
+使用时去引号。
+eg: git checkout -b 4.1.0 origin/4.1.0
+
+优化
+Old:PB ---> MusicItem
+Old:DB ---> Music ---> MusicItem
+New:PB ---> MusicItem
+New:DB ---> MusicItem
+
+构造器多态
+Mem();
+Mem(DBCursor);
+Mem(PBobject);
+输出多态
+toContentValue();
+toJson();
+
+加一个额外字段，供不通过升级DB版本，来实现兼容。
+加时间字段，供排序。
+
+编写man手册
+
+lichswordInc:platform lichsword$ groff -Tascii -man hello.1 
+hello.1:10: warning: can't find character with input code 230
+hello.1:10: warning: can't find character with input code 165
+hello.1:10: warning: can't find character with input code 231
+platform()                                                          platform()
+
+
+
+NASH NAME
+       platform
+
+
+DESCRIPITION
+       desc of platform
+
+
+log
+       git-log
+
+
+
+                                                                    platform()
+lichswordInc:platform lichsword$ ls
+brain.sqlite	doc		hello.1		libtty.jnilib	platform.iml	src
+bus.sqlite	git.log		libgit.jnilib	out		push.sh
+lichswordInc:platform lichsword$ gzip hello.1 
+lichswordInc:platform lichsword$ cp hello.1.gz /usr/share/man/man1/
+cp: /usr/share/man/man1/hello.1.gz: Permission denied
+lichswordInc:platform lichsword$ sudo cp hello.1.gz /usr/share/man/man1/
+Password:
+lichswordInc:platform lichsword$ man hello
+lichswordInc:platform lichsword$ 
+
