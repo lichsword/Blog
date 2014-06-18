@@ -31,6 +31,10 @@ toJson();
 
 编写man手册
 
+Notice: 代号要全部大写
+对：SH
+错：Sh
+
 lichswordInc:platform lichsword$ groff -Tascii -man hello.1 
 hello.1:10: warning: can't find character with input code 230
 hello.1:10: warning: can't find character with input code 165
