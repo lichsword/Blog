@@ -1,0 +1,17 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+
+解决stackoverflow加载超时和css失败
+Linux:
+/etc/hosts
+
+Windows:
+c:\Windows\System32\drivers\etc\hosts
+
+加入如下行：
+198.252.206.140 cdn.sstatic.net

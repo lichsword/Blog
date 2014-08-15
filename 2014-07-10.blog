@@ -1,0 +1,15 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+<Button
+    text=""
+    topDrawable="@drawable/"aaaa 
+    background=""
+    drawablemargin=""
+/>
+
+/res/drawable/aaaa.xml

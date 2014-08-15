@@ -1,0 +1,50 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+
+learn PDL:
+----------------------------------------------------
+If another resource is available
+	Allocate a dialog box structure
+	If a dialog box structure could be allocated
+		Note that one more resoure is in use
+		Initialize the resource
+		Store the resource number at the location provided by the caller
+	Endif
+Endif
+
+Return TRUE if a new resource was created; else return FALSE.
+----------------------------------------------------
+基础：
+	静态
+		不同的纹理帖图
+		多重的纹理帖图
+	动态
+		骨骼
+		蒙皮
+应用
+	白天
+		天空盒
+	大地
+	墙体
+	山脉
+	河流
+	树木
+	光晕
+		太阳
+	光照
+		点光源
+			灯光、火把、篝火
+		线光源
+			日光灯、彩条灯
+		面光源
+			发光墙体
+	人物
+		盒模型
+		曲面模型
+	
+
