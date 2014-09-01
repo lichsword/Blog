@@ -1,0 +1,50 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+
+Maven 教程
+
+一、安装
+略
+二、第一个工程
+Apache Maven 入门篇(IBM)
+三、在IDEA中使用
+File-new-project-Maven module--from exist module.
+四、第一次打包
+Maven Project-->pacakge
+五、添加简单依赖包
+<dependencies>
+        <!-- junit -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.8.2</version>
+	</dependency>
+</dependencies>
+六、想指定Main认识插件--maven-jar-plugin
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<mainClass>com.lichsword.battlenet.App</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+七、其它基础插件
+http://www.infoq.com/cn/news/2011/04/xxb-maven-7-plugin
+八、Nexus你的本地仓库管理器
+http://www.sonatype.org
+
+
