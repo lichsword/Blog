@@ -1,0 +1,14 @@
+-------------
+日期：
+天气：
+星期：
+-------------
+正文
+-------------
+class AmuseItem {
+    int index;// index 0~7 共9个
+    String coverUrl;// 封面
+    List<String> txts;// 显示排列文案
+    String title;// 标题 eg:'看过' '读过'
+}
+
